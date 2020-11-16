@@ -5,7 +5,7 @@ const contactsPath = path.resolve("./db/contacts.json");
 
 const listContacts = async function () {
   const contacts = await fs.promises.readFile(contactsPath, "utf8");
-  console.table("contacts :>> ", JSON.parse(contacts));
+  console.table(JSON.parse(contacts));
 };
 
 const getContactById = async function (contactId) {
@@ -13,9 +13,9 @@ const getContactById = async function (contactId) {
     const response = await fs.promises.readFile(contactsPath, "utf8");
     const contacts = JSON.parse(response);
     const foundContact = contacts.find((item) => item.id === contactId);
-    console.log("foundContact :>> ", foundContact);
+    console.log(foundContact);
   } catch (error) {
-    console.log("error :>> ", error);
+    console.log(error);
   }
 };
 
@@ -27,9 +27,9 @@ const addContact = async function (name, email, phone) {
     const newContact = { id, name, email, phone };
     contacts.push(newContact);
     await fs.promises.writeFile(contactsPath, JSON.stringify(contacts));
-    console.log("Succesfully saved:", newContact);
+    console.log(newContact);
   } catch (error) {
-    console.log("error :>> ", error);
+    console.log(error);
   }
 };
 
@@ -39,9 +39,9 @@ const removeContact = async function (contactId) {
     const contacts = JSON.parse(response);
     const filteredContacts = contacts.filter((item) => item.id !== contactId);
     await fs.promises.writeFile(contactsPath, JSON.stringify(filteredContacts));
-    console.log("Succesfully deleted:", contactId);
+    console.log(contactId);
   } catch (error) {
-    console.log("error :>> ", error);
+    console.log(error);
   }
 };
 
