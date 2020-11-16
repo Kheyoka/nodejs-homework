@@ -3,12 +3,12 @@ const path = require("path");
 
 const contactsPath = path.resolve("./db/contacts.json");
 
-const listContacts = async function () {
+async function listContacts() {
   const contacts = await fs.promises.readFile(contactsPath, "utf8");
   console.table(JSON.parse(contacts));
-};
+}
 
-const getContactById = async function (contactId) {
+async function getContactById(contactId) {
   try {
     const response = await fs.promises.readFile(contactsPath, "utf8");
     const contacts = JSON.parse(response);
@@ -17,9 +17,9 @@ const getContactById = async function (contactId) {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
-const addContact = async function (name, email, phone) {
+async function addContact(name, email, phone) {
   try {
     const response = await fs.promises.readFile(contactsPath, "utf8");
     const contacts = JSON.parse(response);
@@ -31,9 +31,9 @@ const addContact = async function (name, email, phone) {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
-const removeContact = async function (contactId) {
+async function removeContact(contactId) {
   try {
     const response = await fs.promises.readFile(contactsPath, "utf8");
     const contacts = JSON.parse(response);
@@ -43,7 +43,7 @@ const removeContact = async function (contactId) {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 module.exports = {
   listContacts,
